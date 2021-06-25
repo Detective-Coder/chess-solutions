@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessSolutions.Repositories
 {
-    public class IUserProfileRepository
+    public interface IUserProfileRepository
     {
         void Add(UserProfile userProfile);
+        UserProfile GetByFirebaseUserId(string firebaseUserId);
     }
 }

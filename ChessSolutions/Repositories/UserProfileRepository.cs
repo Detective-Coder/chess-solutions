@@ -61,16 +61,13 @@ namespace ChessSolutions.Repositories
                         INSERT INTO UserProfile (firstName, lastName, userName, email, firebaseId)
                         OUTPUT INSERTED.ID
                         VALUES (@firstName, @lastName, @userName, @email, @firebaseId)";
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
-                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
-                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
-                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
-                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+                    DbUtils.AddParameter(cmd, "@firstName", userProfile.firstName);
+                    DbUtils.AddParameter(cmd, "@lastName", userProfile.lastName);
+                    DbUtils.AddParameter(cmd, "@userName", userProfile.userName);
+                    DbUtils.AddParameter(cmd, "@email", userProfile.email);
+                    DbUtils.AddParameter(cmd, "@firebaseId", userProfile.firebaseId);
 
-                    userProfile.Id = (int)cmd.ExecuteScalar();
+                    userProfile.id = (int)cmd.ExecuteScalar();
                 }
             }
         }

@@ -26,7 +26,7 @@ namespace ChessSolutions.Repositories
                         FROM UserProfile up
                         WHERE firebaseId = @firebaseId";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
+                    DbUtils.AddParameter(cmd, "@firebaseId", firebaseUserId);
 
                     UserProfile userProfile = null;
 
@@ -35,25 +35,42 @@ namespace ChessSolutions.Repositories
                     {
                         userProfile = new UserProfile()
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            id = DbUtils.GetInt(reader, "id"),
+                            firstName = DbUtils.GetString(reader, "firstName"),
+                            lastName = DbUtils.GetString(reader, "lastName"),
+                            userName = DbUtils.GetString(reader, "userName"),
+                            email = DbUtils.GetString(reader, "email"),
+                            firebaseId = DbUtils.GetString(reader, "firebaseId"),
                         };
                     }
                     reader.Close();
 
                     return userProfile;
+                }
+            }
+        }
+
+        public void Add(UserProfile userProfile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO UserProfile (firstName, lastName, userName, email, firebaseId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@firstName, @lastName, @userName, @email, @firebaseId)";
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+
+                    userProfile.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

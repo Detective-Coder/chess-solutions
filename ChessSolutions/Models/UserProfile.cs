@@ -7,12 +7,12 @@ namespace ChessSolutions.Models
 {
     public class UserProfile
     {
-        id
-        firstName
-        lastName
-        userName
-        email
-        firbaseId
+        public int id { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string userName { get; set; }
+        public string email { get; set; }
+        public string firebaseId { get; set; }
 
     }
 }

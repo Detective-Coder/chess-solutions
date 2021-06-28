@@ -2,12 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationsViews";
+import { UserProfileProvider } from "./providers/UserProfileProvider";
 
 function App() {
   return (
     <Router>
-      <Header />
-      <ApplicationViews />
+      <UserProfileProvider>
+        <Header />
+        <ApplicationViews />
+      </UserProfileProvider>
     </Router>
   );
 }

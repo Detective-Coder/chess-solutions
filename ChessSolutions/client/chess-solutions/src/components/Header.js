@@ -9,7 +9,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
 
 export default function Header() {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/">Chess Solutions</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -27,34 +27,6 @@ export default function Header() {
             {isLoggedIn &&
               <NavItem>
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
-              </NavItem>
-            }
-            { /* When the link My Posts is clicked Applications views is rendered */ }
-            {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/post/currentUser">My Posts</NavLink>
-              </NavItem>
-            }
-            {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/post">All Posts</NavLink>
-              </NavItem>
-            }
-            {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/posts/add">Add Post</NavLink>
-              </NavItem>
-            }
-
-            {isLoggedIn &&
-              <NavItem>
-               <NavLink tag={RRNavLink} to="/categories">Categories</NavLink>
-              </NavItem>
-            }
-
-            {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/category/add">Add Category</NavLink>
               </NavItem>
             }
           </Nav>

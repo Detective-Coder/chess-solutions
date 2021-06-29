@@ -12,9 +12,19 @@ export default function ApplicationViews() {
     <main>
       <Switch>
         <UserProfileProvider>
+
           <Route path="/" exact>
             {isLoggedIn ? <Home /> : <Redirect to="/login" />}
           </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <Route path="/register">
+            <Register />
+          </Route>
+          
         </UserProfileProvider>
       </Switch>
     </main>

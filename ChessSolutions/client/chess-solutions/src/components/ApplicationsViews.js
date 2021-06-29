@@ -4,6 +4,8 @@ import { UserProfileContext, UserProfileProvider } from "../providers/UserProfil
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
+import PuzzleList from "./PuzzleList";
+import { PuzzleProvider } from "../providers/PuzzleProvider";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -12,9 +14,14 @@ export default function ApplicationViews() {
     <main>
       <Switch>
         <UserProfileProvider>
+        <PuzzleProvider>
 
           <Route path="/" exact>
             {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+          </Route>
+
+          <Route path="/" exact>
+            {isLoggedIn ? <PuzzleList /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/login">
@@ -24,7 +31,12 @@ export default function ApplicationViews() {
           <Route path="/register">
             <Register />
           </Route>
-          
+
+          <Route exact path="/puzzle">
+            <PuzzleList />
+          </Route>
+
+          </PuzzleProvider>
         </UserProfileProvider>
       </Switch>
     </main>

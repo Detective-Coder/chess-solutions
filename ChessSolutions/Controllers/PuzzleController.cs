@@ -4,30 +4,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChessSolutions.Repositories;
+using ChessSolutions.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ChessSolutions.Controllers
 {
-    public class PostController : Controller
+    [Authorize]
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PuzzleController : ControllerBase
     {
-        // GET: PostController
+        private readonly IPuzzleRepository _puzzleRepository;
+        // GET: PuzzleController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: PostController/Details/5
+        // GET: PuzzleController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PostController/Create
+        // GET: PuzzleController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PostController/Create
+        // POST: PuzzleController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -42,13 +50,13 @@ namespace ChessSolutions.Controllers
             }
         }
 
-        // GET: PostController/Edit/5
+        // GET: PuzzleController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PostController/Edit/5
+        // POST: PuzzleController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -63,13 +71,13 @@ namespace ChessSolutions.Controllers
             }
         }
 
-        // GET: PostController/Delete/5
+        // GET: PuzzleController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PostController/Delete/5
+        // POST: PuzzleController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

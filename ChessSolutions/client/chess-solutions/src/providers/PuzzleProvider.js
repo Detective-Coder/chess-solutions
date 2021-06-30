@@ -21,8 +21,18 @@ export const PuzzleProvider = (props) => {
    }).then(res => res.json())
    .then(setPuzzles));
 
+   const getPuzzle = (id) => {
+     return getToken().then((token) => 
+      fetch(`/api/puzzle/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((res) => res.json()))
+   }
+
    return (
-     <PuzzleContext.Provider value = {{ puzzles, getAllPuzzles }}>
+     <PuzzleContext.Provider value = {{ puzzles, getAllPuzzles, getPuzzle }}>
        {props.children}
      </PuzzleContext.Provider>
    )

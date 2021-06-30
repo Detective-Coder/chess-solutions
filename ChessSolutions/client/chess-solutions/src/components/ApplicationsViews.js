@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import PuzzleList from "./PuzzleList";
 import { PuzzleProvider } from "../providers/PuzzleProvider";
+import PuzzleDetails from "./PuzzleDetails";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -27,9 +28,9 @@ export default function ApplicationViews() {
             <Register />
           </Route>
 
-          {/* <Route exact path="/puzzle">
-            <PuzzleList />
-          </Route> */}
+          <Route exact path="/puzzle/:id(\d+)">
+            {(sessionStorage.getItem("userProfile") !== null) ? <PuzzleDetails /> : <Redirect to="/login" />}
+          </Route>
 
           </PuzzleProvider>
         </UserProfileProvider>

@@ -57,5 +57,5 @@ export default function Register() {
         </FormGroup>
       </fieldset>
     </Form>
-  )
+  );
 }

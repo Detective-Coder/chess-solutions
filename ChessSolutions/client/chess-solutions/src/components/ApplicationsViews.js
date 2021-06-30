@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
-import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import PuzzleList from "./PuzzleList";
@@ -17,10 +16,6 @@ export default function ApplicationViews() {
         <PuzzleProvider>
 
           <Route path="/" exact>
-            {isLoggedIn ? <Home /> : <Redirect to="/login" />}
-          </Route>
-
-          <Route path="/" exact>
             {isLoggedIn ? <PuzzleList /> : <Redirect to="/login" />}
           </Route>
 
@@ -32,13 +27,13 @@ export default function ApplicationViews() {
             <Register />
           </Route>
 
-          <Route exact path="/puzzle">
+          {/* <Route exact path="/puzzle">
             <PuzzleList />
-          </Route>
+          </Route> */}
 
           </PuzzleProvider>
         </UserProfileProvider>
       </Switch>
     </main>
-  )
-}
+  );
+};

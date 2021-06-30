@@ -18,7 +18,7 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={loginSubmit}>
+    <Form onSubmit={loginSubmit}>
       <fieldset>
         <FormGroup>
           <Label for="email">Email</Label>
@@ -35,6 +35,6 @@ export default function Login() {
           Not registered? <Link to="register">Register</Link>
         </em>
       </fieldset>
-    </form>
+    </Form>
   );
 }

@@ -13,6 +13,8 @@ const Puzzle = ({ puzzle }) => {
       <h1>
         <strong>{puzzle.name}</strong>
       </h1>
+      {/* <img src={window.location.origin + '../../public/images/puzzle2.png'} /> */}
+      <img src={process.env.PUBLIC_URL + '/images/puzzle1.jpg'} />
     </Card>
   )
 }

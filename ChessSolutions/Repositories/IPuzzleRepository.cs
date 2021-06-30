@@ -9,5 +9,6 @@ namespace ChessSolutions.Repositories
     public interface IPuzzleRepository
     {
         List<Puzzle> GetAll();
+        Puzzle GetById(int id);
     }
 }

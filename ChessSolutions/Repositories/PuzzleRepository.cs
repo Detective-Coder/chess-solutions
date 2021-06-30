@@ -44,5 +44,40 @@ namespace ChessSolutions.Repositories
                 }
             }
         }
+
+        public Puzzle GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT p.id, p.name, p.fileDirectory, p.difficultyLevel
+                    FROM Puzzle p
+                    WHERE p.id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Puzzle puzzle = null;
+                    if (reader.Read())
+                    {
+                        puzzle = new Puzzle()
+                        {
+                            id = id,
+                            name = DbUtils.GetString(reader, "name"),
+                            fileDirectory = DbUtils.GetString(reader, "fileDirectory"),
+                            difficultyLevel = DbUtils.GetString(reader, "difficultyLevel")
+                        };
+                    }
+
+                    reader.Close();
+
+                    return puzzle;
+                }
+            }
+        }
     }
 }

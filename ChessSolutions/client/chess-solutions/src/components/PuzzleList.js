@@ -14,6 +14,7 @@ const PuzzleList = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
+          <h2>Beginner Puzzles</h2>
           {puzzles.map((puzzle) => (
             <>
               <Puzzle key={puzzle.id} puzzle={puzzle} />
@@ -22,6 +23,7 @@ const PuzzleList = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };

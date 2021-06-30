@@ -15,6 +15,9 @@ const Puzzle = ({ puzzle }) => {
       </h1>
       {/* <img src={window.location.origin + '../../public/images/puzzle2.png'} /> */}
       <img src={process.env.PUBLIC_URL + `/images/${puzzle.fileDirectory}`} />
+      <h2>
+        <strong>{puzzle.difficultyLevel}</strong>
+      </h2>
     </Card>
   )
 }

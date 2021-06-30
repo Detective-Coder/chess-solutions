@@ -16,7 +16,7 @@ export default function ApplicationViews() {
         <PuzzleProvider>
 
           <Route path="/" exact>
-            {isLoggedIn ? <PuzzleList /> : <Redirect to="/login" />}
+            {(sessionStorage.getItem("userProfile") !== null) ? <PuzzleList /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/login">

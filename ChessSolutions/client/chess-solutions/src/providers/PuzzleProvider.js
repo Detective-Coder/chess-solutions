@@ -13,7 +13,7 @@ export const PuzzleProvider = (props) => {
 
   const getAllPuzzles = () =>
   getToken().then((token) =>
-   fetch("/api/puzzles", {
+   fetch("/api/puzzle", {
      method: "GET",
      headers: {
        Authorization: `Bearer ${token}`

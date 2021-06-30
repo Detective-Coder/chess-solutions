@@ -26,5 +26,16 @@ namespace ChessSolutions.Controllers
         {
             return Ok(_puzzleRepository.GetAll());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var puzzle = _puzzleRepository.GetById(id);
+            if (puzzle == null)
+            {
+                return NotFound();
+            }
+            return Ok(puzzle);
+        }
     }
 }

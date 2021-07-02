@@ -37,5 +37,16 @@ namespace ChessSolutions.Controllers
             }
             return Ok(puzzle);
         }
+
+        [HttpGet("{id}/comments")]
+        public IActionResult GetPuzzleByIdWithSolution(int id)
+        {
+            var puzzle = _puzzleRepository.GetPuzzleByIdWithSolution(id);
+            if (puzzle == null)
+            {
+                return NotFound();
+            }
+            return Ok(puzzle);
+        }
     }
 }

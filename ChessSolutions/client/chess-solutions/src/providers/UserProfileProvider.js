@@ -2,14 +2,16 @@ import React, { useState, useEffect, createContext } from "react";
 import { Spinner } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { useHistory } from 'react-router-dom';
 
 export const UserProfileContext = createContext();
 
 export function UserProfileProvider(props) {
   const apiUrl = "/api/userprofile";
+  const history = useHistory();
 
   const userProfile = sessionStorage.getItem("userProfile");
-  const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isFirebaseReady, setIsFirebaseReady] = useState(false);
   useEffect(() => {
@@ -26,8 +28,9 @@ export function UserProfileProvider(props) {
         return getUserProfile(signInResponse.user.uid)
       })
       .then((userProfile) => {
-        sessionStorage.setItem("userProfile", JSON.stringify(userProfile));
+        sessionStorage.setItem("userProfile", JSON.stringify(userProfile))
         setIsLoggedIn(true);
+        history.push("/")
       });
   };
 
@@ -36,6 +39,7 @@ export function UserProfileProvider(props) {
       .then(() => {
         sessionStorage.clear()
         setIsLoggedIn(false);
+        history.push("/login");
       });
   };
 

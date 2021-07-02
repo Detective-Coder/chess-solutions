@@ -15,6 +15,6 @@ namespace ChessSolutions.Models
         public string name { get; set; }
         public string fileDirectory { get; set; }
         public string difficultyLevel { get; set; }
-
+        public List<Solution> Solution { get; set; }
     }
 }

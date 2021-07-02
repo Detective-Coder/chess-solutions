@@ -15,6 +15,11 @@ const PuzzleList = () => {
       <div className="row justify-content-center">
         <div className="cards-column">
           <h2>Beginner Puzzles</h2>
+          <p>1 - 10</p>
+          <h2>Intermediate Puzzles</h2>
+          <p>11 - 20</p>
+          <h2>Advanced Puzzles</h2>
+          <p>21 - 30</p>
           {puzzles.map((puzzle) => (
             <>
               <Puzzle key={puzzle.id} puzzle={puzzle} />

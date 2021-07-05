@@ -1,9 +1,20 @@
-import React from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { PuzzleProvider } from "../providers/PuzzleProvider";
+import {
+  Form,
+  FormGroup,
+  Card,
+  CardImg,
+  CardBody,
+  Label,
+  Input,
+  Button,
+} from "reactstrap";
 
 const Puzzle = ({ puzzle }) => {
+  const [showForm, setShowForm] = useState(false);
+  const toggle = () => setShowForm(!showForm);
   console.log(puzzle);
   const history = useHistory();
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
@@ -20,14 +31,22 @@ const Puzzle = ({ puzzle }) => {
       </h2>
 
         {puzzle.solution.map(solution => (
-          <h3>
-            <strong>Solution: {puzzle.solution[0].content}</strong>
+          <h3 key={solution.content}>
+            <strong>Solution: {solution.content}</strong>
           </h3>
         ))}
+
+        <button onClick={toggle}>Add Solution</button>
+
+        <Form>
+            <FormGroup>
+              <Label for="solution">Solution</Label>
+              <Input id="solution" name="solution" />
+            </FormGroup>
+        </Form>
 
     </Card>
   )
 }
-
 
 export default Puzzle;

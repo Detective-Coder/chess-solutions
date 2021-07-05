@@ -98,40 +98,47 @@ namespace ChessSolutions.Repositories
                     var reader = cmd.ExecuteReader();
 
                     Puzzle puzzle = null;
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         var puzzleId = DbUtils.GetInt(reader, "puzzleId");
 
 
-                        puzzle = new Puzzle()
-                        {
-                            id = DbUtils.GetInt(reader, "puzzleId"),
-                            name = DbUtils.GetString(reader, "name"),
-                            fileDirectory = DbUtils.GetString(reader, "fileDirectory"),
-                            difficultyLevel = DbUtils.GetString(reader, "difficultyLevel"),
-                            Solution = new List<Solution>()
-                    };
+
 
                         
 
                         if (DbUtils.IsNotDbNull(reader, "solutionId"))
                         {
-                            puzzle.Solution.Add(new Solution()
+                            if (puzzle == null)
                             {
-                                id = DbUtils.GetInt(reader, "solutionId"),
-                                content = DbUtils.GetString(reader, "content"),
-                                userProfileId = DbUtils.GetInt(reader, "userProfileId"),
-                                puzzleId = DbUtils.GetInt(reader, "puzzleId"),
-                                date = DbUtils.GetString(reader, "date")
-                            });
+                                puzzle = new Puzzle()
+                                {
+                                    id = DbUtils.GetInt(reader, "puzzleId"),
+                                    name = DbUtils.GetString(reader, "name"),
+                                    fileDirectory = DbUtils.GetString(reader, "fileDirectory"),
+                                    difficultyLevel = DbUtils.GetString(reader, "difficultyLevel"),
+                                    Solution = new List<Solution>()
+                                };
+                            }
+                            else
+                            {
+                                puzzles.Solution.Add(new Solution()
+                                {
+                                    id = DbUtils.GetInt(reader, "solutionId"),
+                                    content = DbUtils.GetString(reader, "content"),
+                                    userProfileId = DbUtils.GetInt(reader, "userProfileId"),
+                                    puzzleId = DbUtils.GetInt(reader, "puzzleId"),
+                                    date = DbUtils.GetString(reader, "date")
+                                });
+                            }
+
                         }
                     }
 
                     reader.Close();
 
-                    return puzzle;
+                    return puzzles;
                 }
-                //return null;
             }
         }
     }

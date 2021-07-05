@@ -23,7 +23,7 @@ const PuzzleList = () => {
           {puzzles.map((puzzle) => (
             <>
               <Puzzle key={puzzle.id} puzzle={puzzle} />
-              <Link to={`/puzzle/${puzzle.id}`}>View Puzzle</Link>
+              <Link to={`/puzzle/${puzzle.id}/solutions`}>View Puzzle</Link>
             </>
           ))}
         </div>

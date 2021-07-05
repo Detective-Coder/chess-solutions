@@ -28,8 +28,8 @@ export default function ApplicationViews() {
             <Register />
           </Route>
 
-          <Route exact path="/puzzle/:id(\d+)">
-            {(sessionStorage.getItem("userProfile") !== null) ? <PuzzleDetails /> : <Redirect to="/login" />}
+          <Route exact path="/puzzle/:id(\d+)/solutions">
+            <PuzzleDetails /> 
           </Route>
 
           </PuzzleProvider>

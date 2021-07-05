@@ -6,11 +6,11 @@ import Puzzle from "./PuzzleDetailCard";
 
 const PuzzleDetails = () => {
   const [puzzle, setPuzzle] = useState();
-  const { getPuzzle } = useContext(PuzzleContext);
+  const { getPuzzleWithSolutions } = useContext(PuzzleContext);
   const { id } = useParams();
 
   useEffect(() => {
-    getPuzzle(id).then(setPuzzle);
+    getPuzzleWithSolutions(id).then(setPuzzle);
   }, []);
 
   if (!puzzle) {

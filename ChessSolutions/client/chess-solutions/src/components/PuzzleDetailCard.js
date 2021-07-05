@@ -18,8 +18,16 @@ const Puzzle = ({ puzzle }) => {
       <h2>
         <strong>{puzzle.difficultyLevel}</strong>
       </h2>
+
+        {puzzle.solution.map(solution => (
+          <h3>
+            <strong>Solution: {puzzle.solution[0].content}</strong>
+          </h3>
+        ))}
+
     </Card>
   )
 }
+
 
 export default Puzzle;

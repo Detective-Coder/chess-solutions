@@ -1,5 +1,5 @@
-INSERT INTO [UserProfile]
-  ([firstName], [lastName], [userName], [email], [firebaseId])
+INSERT INTO [Solution]
+  ([content], [userProfileId], [puzzleId], [date])
 VALUES
-  ('Aaron', 'Frankenfield', 'roadtriphorror', 'aaronfrankenfield@gmail.com', 'LJXgSdNSR8OQfqqRoyhrlYtE0Fx2'),
-  ('Mary', 'Arritt', 'mary', 'googliemooblie@yahoo.com', 'kMKwukDWcINbON8OezRtckjL2n72');
+  ('qxb8', 1, 2, '7-5-21'),
+  ('qxb6', 1, 2, '7-5-21');

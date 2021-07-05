@@ -114,7 +114,7 @@ namespace ChessSolutions.Repositories
 
                         
 
-                        if (DbUtils.IsNotDbNull(reader, "Solution"))
+                        if (DbUtils.IsNotDbNull(reader, "solutionId"))
                         {
                             puzzle.Solution.Add(new Solution()
                             {

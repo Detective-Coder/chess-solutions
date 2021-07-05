@@ -102,42 +102,38 @@ namespace ChessSolutions.Repositories
                     {
                         var puzzleId = DbUtils.GetInt(reader, "puzzleId");
 
-
-
-
-                        
+                        if (puzzle == null)
+                        {
+                            puzzle = new Puzzle()
+                            {
+                                id = DbUtils.GetInt(reader, "puzzleId"),
+                                name = DbUtils.GetString(reader, "name"),
+                                fileDirectory = DbUtils.GetString(reader, "fileDirectory"),
+                                difficultyLevel = DbUtils.GetString(reader, "difficultyLevel"),
+                                Solution = new List<Solution>()
+                            };
+                        }
 
                         if (DbUtils.IsNotDbNull(reader, "solutionId"))
                         {
-                            if (puzzle == null)
-                            {
-                                puzzle = new Puzzle()
+
+
+                                puzzle.Solution.Add(new Solution()
                                 {
                                     id = DbUtils.GetInt(reader, "puzzleId"),
-                                    name = DbUtils.GetString(reader, "name"),
-                                    fileDirectory = DbUtils.GetString(reader, "fileDirectory"),
-                                    difficultyLevel = DbUtils.GetString(reader, "difficultyLevel"),
-                                    Solution = new List<Solution>()
-                                };
-                            }
-                            else
-                            {
-                                puzzles.Solution.Add(new Solution()
-                                {
-                                    id = DbUtils.GetInt(reader, "solutionId"),
                                     content = DbUtils.GetString(reader, "content"),
                                     userProfileId = DbUtils.GetInt(reader, "userProfileId"),
                                     puzzleId = DbUtils.GetInt(reader, "puzzleId"),
                                     date = DbUtils.GetString(reader, "date")
                                 });
-                            }
+
 
                         }
                     }
 
                     reader.Close();
 
-                    return puzzles;
+                    return puzzle;
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using ChessSolutions.Repositories;
+﻿using ChessSolutions.Models;
+using ChessSolutions.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,6 +23,13 @@ namespace ChessSolutions.Controllers
         public IActionResult Get()
         {
             return Ok(_solutionRepository.GetAll());
+        }
+
+        [HttpPost]
+        public IActionResult Post(Solution solution)
+        {
+            _solutionRepository.Add(solution);
+            return CreatedAtAction("Get", new { id = solution.id }, solution);
         }
     }
 }

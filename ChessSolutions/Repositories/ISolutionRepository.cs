@@ -9,5 +9,6 @@ namespace ChessSolutions.Repositories
     public interface ISolutionRepository
     {
         List<Solution> GetAll();
+        void Add(Solution solution);
     }
 }

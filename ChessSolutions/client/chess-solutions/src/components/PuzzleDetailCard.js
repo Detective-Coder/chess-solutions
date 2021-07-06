@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { PuzzleContext } from "../providers/PuzzleProvider";
 import {
   Form,
@@ -17,14 +17,33 @@ const Puzzle = ({ puzzle }) => {
   const toggle = () => setShowForm(!showForm);
   console.log(puzzle);
   const history = useHistory();
+  const id = { useParams };
+
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
-  const {  addSolution } = useContext(PuzzleContext);
+  const { addSolution } = useContext(PuzzleContext);
+
 
   const [solution, setSolution] = useState({});
 
-  const handleSaveSolution = () => {
-
+  const handleControlledInputChange = (event) => {
+    //When changing a state object or array,
+    //always create a copy make changes, and then set state.
+    const newSolution = { ...solution }
+    //animal is an object with properties.
+    //set the property to the new value
+    newSolution[event.target.id] = event.target.value
+    //update state
+    setSolution(newSolution)
   }
+
+    const handleSaveSolution = () => {
+      addSolution({
+        content: solution.content,
+        userProfileId: +userProfile.id,
+        puzzleId: id,
+        date: new Date()
+      })
+    }
 
   return (
     <Card className="m-4">
@@ -39,7 +58,7 @@ const Puzzle = ({ puzzle }) => {
 
         {puzzle.solution.map(solution => (
           <h3 key={solution.content}>
-            <strong>Solution: {solution.content}</strong>
+            <strong>Solution: {solution?.content}</strong>
           </h3>
         ))}
 
@@ -49,7 +68,7 @@ const Puzzle = ({ puzzle }) => {
             ? <Form>
                 <FormGroup>
                   <Label for="solution">Solution</Label>
-                  <Input id="solution" name="solution" />
+                  <Input id="solution" name="solution" onChange={handleControlledInputChange} />
                 </FormGroup>
                 <FormGroup>
                   <button onClick={handleSaveSolution}>Submit Solution</button>
@@ -65,9 +84,5 @@ const Puzzle = ({ puzzle }) => {
     </Card>
   )
 }
-// {isLoggedIn
-//   ? <LogoutButton onClick={this.handleLogoutClick} />
-//   : <LoginButton onClick={this.handleLoginClick} />
-// }
 
 export default Puzzle;

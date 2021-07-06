@@ -37,16 +37,27 @@ const Puzzle = ({ puzzle }) => {
         ))}
 
         <button onClick={toggle}>Add Solution</button>
+        
+        { showForm
+            ? <Form>
+                <FormGroup>
+                  <Label for="solution">Solution</Label>
+                  <Input id="solution" name="solution" />
+                </FormGroup>
+              </Form> 
+              : 
+              <div>
+                
+              </div>
+        }
 
-        <Form>
-            <FormGroup>
-              <Label for="solution">Solution</Label>
-              <Input id="solution" name="solution" />
-            </FormGroup>
-        </Form>
 
     </Card>
   )
 }
+// {isLoggedIn
+//   ? <LogoutButton onClick={this.handleLogoutClick} />
+//   : <LoginButton onClick={this.handleLoginClick} />
+// }
 
 export default Puzzle;

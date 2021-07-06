@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { PuzzleProvider } from "../providers/PuzzleProvider";
+import { PuzzleContext } from "../providers/PuzzleProvider";
 import {
   Form,
   FormGroup,
@@ -18,6 +18,13 @@ const Puzzle = ({ puzzle }) => {
   console.log(puzzle);
   const history = useHistory();
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+  const {  addSolution } = useContext(PuzzleContext);
+
+  const [solution, setSolution] = useState({});
+
+  const handleSaveSolution = () => {
+
+  }
 
   return (
     <Card className="m-4">
@@ -44,10 +51,13 @@ const Puzzle = ({ puzzle }) => {
                   <Label for="solution">Solution</Label>
                   <Input id="solution" name="solution" />
                 </FormGroup>
+                <FormGroup>
+                  <button onClick={handleSaveSolution}>Submit Solution</button>
+                </FormGroup>
               </Form> 
               : 
               <div>
-                
+
               </div>
         }
 

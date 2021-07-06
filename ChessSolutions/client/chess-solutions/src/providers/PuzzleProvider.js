@@ -31,7 +31,7 @@ export const PuzzleProvider = (props) => {
       }).then((res) => res.json()))
    }
 
-   const getPuzzleWithSolutions = (id) => {
+  const getPuzzleWithSolutions = (id) => {
     return getToken().then((token) => 
      fetch(`/api/puzzle/${id}/solutions`, {
        method: "GET",
@@ -41,8 +41,20 @@ export const PuzzleProvider = (props) => {
      }).then((res) => res.json()))
   }
 
+  const addSolutionToPuzzleById = (id) => {
+    return getToken().then((token) => 
+      fetch(`/api/puzzle/${id}/solutions`, {
+       method: "POST",
+       headers: {
+         Authorization: `Bearer ${token}`,
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(puzzle),
+     })
+  )};
+
    return (
-     <PuzzleContext.Provider value = {{ puzzles, getAllPuzzles, getPuzzle, getPuzzleWithSolutions }}>
+     <PuzzleContext.Provider value = {{ puzzles, getAllPuzzles, getPuzzle, getPuzzleWithSolutions, addSolutionToPuzzleById }}>
        {props.children}
      </PuzzleContext.Provider>
    )

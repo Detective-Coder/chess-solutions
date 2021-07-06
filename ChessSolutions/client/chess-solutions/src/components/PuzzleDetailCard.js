@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { PuzzleContext } from "../providers/PuzzleProvider";
+import { SolutionContext } from "../providers/SolutionProvider";
 import {
   Form,
   FormGroup,
@@ -20,7 +21,7 @@ const Puzzle = ({ puzzle }) => {
   const id = { useParams };
 
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
-  const { addSolution } = useContext(PuzzleContext);
+  const { addSolution } = useContext(SolutionContext);
 
 
   const [solution, setSolution] = useState({});

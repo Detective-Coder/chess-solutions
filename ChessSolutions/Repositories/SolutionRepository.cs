@@ -44,5 +44,27 @@ namespace ChessSolutions.Repositories
                 }
             }
         }
+
+        public void Add(Solution solution)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Solution (content, userProfileId, puzzleId, date)
+                        OUTPUT INSERTED.ID
+                        VALUES (@content, @userProfileId, @puzzleId, @date)";
+
+                    DbUtils.AddParameter(cmd, "@content", solution.content);
+                    DbUtils.AddParameter(cmd, "@userProfileId", solution.userProfileId);
+                    DbUtils.AddParameter(cmd, "@puzzleId", solution.puzzleId);
+                    DbUtils.AddParameter(cmd, "@date", solution.date);
+
+                    solution.id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }

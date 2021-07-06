@@ -23,7 +23,7 @@ export const SolutionProvider = (props) => {
 
   const addSolution = (solution) => {
     return getToken().then((token) => 
-      fetch(`/api/solution`, {
+      fetch("/api/solution", {
        method: "POST",
        headers: {
          Authorization: `Bearer ${token}`,
@@ -34,8 +34,8 @@ export const SolutionProvider = (props) => {
   )};
 
    return (
-     <PuzzleContext.Provider value = {{ solutions, getAllSolutions, addSolution }}>
+     <SolutionContext.Provider value = {{ solutions, getAllSolutions, addSolution }}>
        {props.children}
-     </PuzzleContext.Provider>
+     </SolutionContext.Provider>
    )
 }

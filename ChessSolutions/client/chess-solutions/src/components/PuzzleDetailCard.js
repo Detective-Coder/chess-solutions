@@ -52,6 +52,7 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
       .then((p) => {
         console.log(p)
         setPuzzle(p)
+        setShowForm(false)
       })
     }
 

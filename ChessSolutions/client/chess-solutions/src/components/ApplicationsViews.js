@@ -7,6 +7,7 @@ import PuzzleList from "./PuzzleList";
 import { PuzzleProvider } from "../providers/PuzzleProvider";
 import PuzzleDetails from "./PuzzleDetails";
 import { SolutionProvider } from "../providers/SolutionProvider";
+import { CommentProvider } from "../providers/CommentProvider";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -17,6 +18,7 @@ export default function ApplicationViews() {
         <UserProfileProvider>
         <PuzzleProvider>
         <SolutionProvider>
+        <CommentProvider>
 
           <Route exact path="/">
             <PuzzleList /> 
@@ -34,6 +36,7 @@ export default function ApplicationViews() {
             <PuzzleDetails /> 
           </Route>
           
+        </CommentProvider>
         </SolutionProvider>
         </PuzzleProvider>
         </UserProfileProvider>

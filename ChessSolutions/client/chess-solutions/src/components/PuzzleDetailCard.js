@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { PuzzleContext } from "../providers/PuzzleProvider";
 import { SolutionContext } from "../providers/SolutionProvider";
+import { CommentContext } from "../providers/CommentProvider";
 import {
   Form,
   FormGroup,
@@ -15,6 +16,7 @@ import {
 
 const Puzzle = ({ puzzle, setPuzzle }) => {
   const { getPuzzleWithSolutions } = useContext(PuzzleContext);
+  const { getAllComments } = useContext(CommentContext);
   const [showForm, setShowForm] = useState(false);
   const toggle = () => setShowForm(!showForm);
   console.log(puzzle);
@@ -27,6 +29,8 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
 
 
   const [solution, setSolution] = useState({});
+
+  const [comment, setComment] = useState({});
 
   const handleControlledInputChange = (event) => {
     //When changing a state object or array,
@@ -68,9 +72,18 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
       </h2>
 
         {puzzle.solution.map(solution => (
-          <h3 key={solution.content}>
-            <strong>Solution: {solution?.content}</strong>
-          </h3>
+          <>
+            <h3 key={solution.content}>
+              <strong>Solution: {solution?.content}</strong>
+            </h3>
+            {/* {puzzle.solution.comment.map(comment => (
+                <p key={comment.content}>
+                  {comment?.content}
+                </p>
+            ))} */}
+
+            <button>Add Comment</button>
+          </>
         ))}
 
         <button onClick={toggle}>Add Solution</button>

@@ -80,7 +80,7 @@ namespace ChessSolutions.Repositories
             }
         }
 
-        public Puzzle GetPuzzleByIdWithSolution(int id)
+        public Puzzle GetPuzzleByIdWithSolutionAndComments(int id)
         {
             using (var conn = Connection)
             {
@@ -89,9 +89,11 @@ namespace ChessSolutions.Repositories
                 {
                     cmd.CommandText = @"
                     SELECT p.id AS puzzleId, p.name, p.fileDirectory, p.difficultyLevel,
-                           s.id AS solutionId, s.content, s.userProfileId, s.puzzleId, s.date
+                           s.id AS solutionId, s.content, s.userProfileId, s.puzzleId, s.date,
+                           c.id AS commentId, c.solutionId, c.userProfileId, c.content AS commentContent, c.date AS commentDate
                       FROM Puzzle p
                            LEFT JOIN Solution s on s.puzzleId = p.id
+                           LEFT JOIN Comment c on c.solutionId = s.id
                       WHERE p.id = @id
                       ";
                     DbUtils.AddParameter(cmd, "@id", id);
@@ -120,14 +122,26 @@ namespace ChessSolutions.Repositories
 
                                 puzzle.Solution.Add(new Solution()
                                 {
-                                    id = DbUtils.GetInt(reader, "puzzleId"),
+                                    id = DbUtils.GetInt(reader, "solutionId"),
                                     content = DbUtils.GetString(reader, "content"),
                                     userProfileId = DbUtils.GetInt(reader, "userProfileId"),
                                     puzzleId = DbUtils.GetInt(reader, "puzzleId"),
                                     date = DbUtils.GetString(reader, "date")
                                 });
+                        }
+
+                        if (DbUtils.IsNotDbNull(reader, "commentId"))
+                        {
 
 
+                            //puzzle.Comment.Add(new Comment()
+                            //{
+                            //    id = DbUtils.GetInt(reader, "commentId"),
+                            //    solutionId = DbUtils.GetInt(reader, "solutionId"),
+                            //    userProfileId = DbUtils.GetInt(reader, "userProfileId"),
+                            //    content = DbUtils.GetString(reader, "content"),
+                            //    date = DbUtils.GetString(reader, "date")
+                            //});
                         }
                     }
 

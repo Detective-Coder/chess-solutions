@@ -15,5 +15,6 @@ namespace ChessSolutions.Models
         public int userProfileId { get; set; }
         public int puzzleId { get; set; }
         public string date { get; set; }
+        public List<Comment> Comment { get; set; }
     }
 }

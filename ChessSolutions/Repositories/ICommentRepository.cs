@@ -1,0 +1,14 @@
+﻿using ChessSolutions.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ChessSolutions.Repositories
+{
+    public interface ICommentRepository
+    {
+        List<Comment> GetAll();
+        void Add(Comment comment);
+    }
+}

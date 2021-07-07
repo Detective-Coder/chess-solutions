@@ -32,6 +32,7 @@ namespace ChessSolutions
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IPuzzleRepository, PuzzleRepository>();
             services.AddTransient<ISolutionRepository, SolutionRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoke.google.com/{firebaseProjectId}";

@@ -1,5 +1,4 @@
-INSERT INTO [Solution]
-  ([content], [userProfileId], [puzzleId], [date])
+INSERT INTO [Comment]
+  ([solutionId], [userProfileId], [content], [date])
 VALUES
-  ('qxb8', 1, 2, '7-5-21'),
-  ('qxb6', 1, 2, '7-5-21');
+  (1, 1, "good solution", '7-7-21');

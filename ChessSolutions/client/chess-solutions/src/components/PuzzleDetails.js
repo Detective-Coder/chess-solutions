@@ -21,7 +21,7 @@ const PuzzleDetails = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-sm-12 col-lg-6">
-          <Puzzle puzzle={puzzle} />
+          <Puzzle puzzle={puzzle} setPuzzle={setPuzzle} />
         </div>
       </div>
     </div>

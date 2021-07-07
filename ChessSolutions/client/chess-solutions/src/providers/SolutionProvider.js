@@ -23,7 +23,7 @@ export const SolutionProvider = (props) => {
 
   const addSolution = (solution) => {
     return getToken().then((token) => 
-      fetch("/api/solution", {
+      fetch(`/api/solution`, {
        method: "POST",
        headers: {
          Authorization: `Bearer ${token}`,

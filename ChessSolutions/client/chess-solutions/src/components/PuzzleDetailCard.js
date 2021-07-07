@@ -13,14 +13,16 @@ import {
   Button,
 } from "reactstrap";
 
-const Puzzle = ({ puzzle }) => {
+const Puzzle = ({ puzzle, setPuzzle }) => {
+  const { getPuzzleWithSolutions } = useContext(PuzzleContext);
   const [showForm, setShowForm] = useState(false);
   const toggle = () => setShowForm(!showForm);
   console.log(puzzle);
   const history = useHistory();
-  const id = { useParams };
+  const {id} = useParams();
 
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+
   const { addSolution } = useContext(SolutionContext);
 
 
@@ -41,8 +43,15 @@ const Puzzle = ({ puzzle }) => {
       addSolution({
         content: solution.content,
         userProfileId: +userProfile.id,
-        puzzleId: id,
+        puzzleId: +id,
         date: new Date()
+      })
+      .then(() => {
+        return getPuzzleWithSolutions(+id)
+      })
+      .then((p) => {
+        console.log(p)
+        setPuzzle(p)
       })
     }
 
@@ -69,10 +78,13 @@ const Puzzle = ({ puzzle }) => {
             ? <Form>
                 <FormGroup>
                   <Label for="solution">Solution</Label>
-                  <Input id="solution" name="solution" onChange={handleControlledInputChange} />
+                  <Input id="content" name="solution" value={solution.content} onChange={handleControlledInputChange} />
                 </FormGroup>
                 <FormGroup>
-                  <button onClick={handleSaveSolution}>Submit Solution</button>
+                  <button onClick={event => {
+                    event.preventDefault()
+                    handleSaveSolution()
+                  }}>Submit Solution</button>
                 </FormGroup>
               </Form> 
               : 

@@ -25,7 +25,7 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
 
   let userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
-  const { addSolution } = useContext(SolutionContext);
+  const { addSolution, deleteSolution } = useContext(SolutionContext);
 
 
   const [solution, setSolution] = useState({});
@@ -60,6 +60,16 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
       })
     }
 
+    const handleDelete = (solutionId) => {
+      deleteSolution(solutionId)
+      .then(() => {
+        return getPuzzleWithSolutions(+id)
+      })
+      .then((p) => {
+        setPuzzle(p)
+      })
+    }
+
   return (
     <Card className="m-4">
       <h1>
@@ -72,17 +82,21 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
       </h2>
 
         {puzzle.solution.map(solution => (
+          
           <>
+            
             <h3 key={solution.content}>
               <strong>Solution: {solution?.content}</strong>
             </h3>
-            {/* {puzzle.solution.comment.map(comment => (
-                <p key={comment.content}>
-                  {comment?.content}
-                </p>
-            ))} */}
 
-            <button>Add Comment</button>
+            
+            {userProfile.id === solution.userProfileId ? (
+              <button onClick={() => {
+                handleDelete(solution.id)
+              }}>Delete Solution</button>
+            ) : (
+              <button>Not Authorized</button> 
+            )}
           </>
         ))}
 

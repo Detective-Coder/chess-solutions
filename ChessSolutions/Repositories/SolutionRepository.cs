@@ -74,7 +74,9 @@ namespace ChessSolutions.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Solution WHERE Id = @Id";
+                    cmd.CommandText = @"DELETE FROM Comment WHERE solutionId = @Id;
+                                        DELETE FROM Solution WHERE Id = @Id
+                                        ";
                     DbUtils.AddParameter(cmd, "@id", id);
                     cmd.ExecuteNonQuery();
                 }

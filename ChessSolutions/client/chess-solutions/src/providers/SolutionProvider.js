@@ -33,8 +33,18 @@ export const SolutionProvider = (props) => {
      })
   )};
 
+  const deleteSolution = solutionId => {
+    return getToken().then((token) =>
+     fetch(`/api/solution/${solutionId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }))
+  }
+
    return (
-     <SolutionContext.Provider value = {{ solutions, getAllSolutions, addSolution }}>
+     <SolutionContext.Provider value = {{ solutions, getAllSolutions, addSolution, deleteSolution }}>
        {props.children}
      </SolutionContext.Provider>
    )

@@ -10,6 +10,6 @@ namespace ChessSolutions.Repositories
     {
         List<Puzzle> GetAll();
         Puzzle GetById(int id);
-        Puzzle GetPuzzleByIdWithSolutionAndComments(int id);
+        Puzzle GetPuzzleByIdWithSolution(int id);
     }
 }

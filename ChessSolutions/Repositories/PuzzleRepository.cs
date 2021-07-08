@@ -80,7 +80,7 @@ namespace ChessSolutions.Repositories
             }
         }
 
-        public Puzzle GetPuzzleByIdWithSolutionAndComments(int id)
+        public Puzzle GetPuzzleByIdWithSolution(int id)
         {
             using (var conn = Connection)
             {
@@ -126,23 +126,11 @@ namespace ChessSolutions.Repositories
                                     content = DbUtils.GetString(reader, "content"),
                                     userProfileId = DbUtils.GetInt(reader, "userProfileId"),
                                     puzzleId = DbUtils.GetInt(reader, "puzzleId"),
-                                    date = DbUtils.GetString(reader, "date")
+                                    date = DbUtils.GetString(reader, "date"),
                                 });
                         }
+    
 
-                        if (DbUtils.IsNotDbNull(reader, "commentId"))
-                        {
-
-
-                            //puzzle.Comment.Add(new Comment()
-                            //{
-                            //    id = DbUtils.GetInt(reader, "commentId"),
-                            //    solutionId = DbUtils.GetInt(reader, "solutionId"),
-                            //    userProfileId = DbUtils.GetInt(reader, "userProfileId"),
-                            //    content = DbUtils.GetString(reader, "content"),
-                            //    date = DbUtils.GetString(reader, "date")
-                            //});
-                        }
                     }
 
                     reader.Close();

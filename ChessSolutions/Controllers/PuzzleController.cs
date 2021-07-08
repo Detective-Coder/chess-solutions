@@ -39,14 +39,16 @@ namespace ChessSolutions.Controllers
         }
 
         [HttpGet("{id}/solutions")]
-        public IActionResult GetPuzzleByIdWithSolutionAndComments(int id)
+        public IActionResult GetPuzzleByIdWithSolution(int id)
         {
-            var puzzle = _puzzleRepository.GetPuzzleByIdWithSolutionAndComments(id);
+            var puzzle = _puzzleRepository.GetPuzzleByIdWithSolution(id);
             if (puzzle == null)
             {
                 return NotFound();
             }
             return Ok(puzzle);
         }
+
+
     }
 }

@@ -10,5 +10,6 @@ namespace ChessSolutions.Repositories
     {
         List<Solution> GetAll();
         void Add(Solution solution);
+        void Delete(int id);
     }
 }

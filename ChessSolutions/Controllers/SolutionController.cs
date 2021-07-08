@@ -31,5 +31,12 @@ namespace ChessSolutions.Controllers
             _solutionRepository.Add(solution);
             return CreatedAtAction("Get", new { id = solution.id }, solution);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _solutionRepository.Delete(id);
+            return NoContent();
+        }
     }
 }

@@ -3,6 +3,10 @@ import { PuzzleContext } from "../providers/PuzzleProvider";
 import Puzzle from "./Puzzle";
 import { Link } from 'react-router-dom';
 import { Button, Container, Row, Col } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle
+} from 'reactstrap';
 
 const PuzzleList = () => {
   const { puzzles, getAllPuzzles } = useContext(PuzzleContext);
@@ -17,27 +21,33 @@ const PuzzleList = () => {
       <Row>
         <Col>        
           <h2>Beginner Puzzles</h2>
-          <p>1 - 10</p>
+          <p style={{ margin: '0 auto', width: '10rem' }}>1 - 10</p>
         </Col>
         <Col>        
           <h2>Intermediate Puzzles</h2>
-          <p>11 - 20</p>
+          <p style={{ margin: '0 auto', width: '10rem' }}>11 - 20</p>
         </Col>
         <Col>        
           <h2>Advanced Puzzles</h2>
-          <p>21 - 30</p>
+          <p style={{ margin: '0 auto', width: '10rem' }}>21 - 30</p>
         </Col>
       </Row>
       <Row>
-        <Col xs="3">
-          {puzzles.map((puzzle) => (
-            <>
-              <Puzzle key={puzzle.id} puzzle={puzzle} />
-              <Button color="primary" className="mx-auto">
-                <Link to={`/puzzle/${puzzle.id}/solutions`} className="text-white">View Puzzle</Link>
-              </Button>
-            </>
-          ))}
+        <Col xs="6">
+          <Card>
+            <CardBody>
+              {puzzles.map((puzzle) => (
+                <>
+                  <CardTitle>
+                    <Puzzle key={puzzle.id} puzzle={puzzle} />
+                  </CardTitle>
+                  <Button color="primary" style={{ width: '5rem' }}>
+                    <Link to={`/puzzle/${puzzle.id}/solutions`} className="text-white">View</Link>
+                  </Button>
+                </>
+              ))}
+            </CardBody>
+          </Card>
         </Col>
       </Row>
     </Container>

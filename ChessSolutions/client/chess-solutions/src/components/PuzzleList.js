@@ -33,7 +33,7 @@ const PuzzleList = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs="6" style={{ backgroundColor: "#007bff" }}>
+        <Col xs="6" style={{ backgroundColor: "#007bff" }} className="mx-auto mt-5" style={{ width: "100vw"}}>
           <Card>
             <CardBody>
               {puzzles.map((puzzle) => (

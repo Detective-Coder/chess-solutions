@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar style={{ backgroundColor: "#007bff" }} dark expand="md">
         <NavbarBrand tag={RRNavLink} to="/">Chess Solutions</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

@@ -17,7 +17,7 @@ const PuzzleList = () => {
 
   return (
 
-    <Container>
+    <Container className="mt-5">
       <Row>
         <Col>        
           <h2>Beginner Puzzles</h2>
@@ -33,7 +33,7 @@ const PuzzleList = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs="6">
+        <Col xs="6" style={{ backgroundColor: "#007bff" }}>
           <Card>
             <CardBody>
               {puzzles.map((puzzle) => (

@@ -71,7 +71,7 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
     }
 
   return (
-    <Card className="m-4">
+    <Card className="m-5">
       <h1>
         <strong>{puzzle.name}</strong>
       </h1>
@@ -91,16 +91,16 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
 
             
             {userProfile.id === solution.userProfileId ? (
-              <button onClick={() => {
+              <Button color="primary" onClick={() => {
                 handleDelete(solution.id)
-              }}>Delete Solution</button>
+              }}>Delete Solution</Button>
             ) : (
-              <button>Not Authorized</button> 
+              <Button color="primary">Not Authorized</Button> 
             )}
           </>
         ))}
 
-        <button onClick={toggle}>Add Solution</button>
+        <Button color="primary" className="mt-4" onClick={toggle}>Add Solution</Button>
         
         { showForm
             ? <Form>
@@ -109,10 +109,10 @@ const Puzzle = ({ puzzle, setPuzzle }) => {
                   <Input id="content" name="solution" value={solution.content} onChange={handleControlledInputChange} />
                 </FormGroup>
                 <FormGroup>
-                  <button onClick={event => {
+                  <Button color="primary" onClick={event => {
                     event.preventDefault()
                     handleSaveSolution()
-                  }}>Submit Solution</button>
+                  }}>Submit Solution</Button>
                 </FormGroup>
               </Form> 
               : 
